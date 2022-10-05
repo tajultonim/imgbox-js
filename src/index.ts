@@ -23,7 +23,6 @@ import {
 } from './helper';
 import FormData from 'form-data';
 import isUrl from 'is-url';
-import fs from 'fs';
 
 /* 
  * 
@@ -87,15 +86,7 @@ const imgbox = async (
             }
             // 2. 'src/foo.jpg'
             if (!isUrl(images)) {
-                try {
-                    if (fs.statSync(images).isFile()) {
-                        const data = await postImage(fs.readFileSync(images), form);
-                        result = { ok: true, message: 'Image file has been uploaded.', data };
-                        addGalleryEditResponse(result, token);
-                    }
-                } catch (error: any) {
-                    throw new Error(error.message);
-                }
+                console.log("image is not url");
             }
         }
 
@@ -108,15 +99,7 @@ const imgbox = async (
             }
             // 4. { source: 'src/foo.jpg', filename: 'sky from path' }
             if (!isUrl((images as WithName).source)) {
-                try {
-                    if (fs.statSync((images as WithName).source).isFile()) {
-                        const data = await postImage(fs.readFileSync((images as WithName).source), form, (images as WithName).filename);
-                        result = { ok: true, message: 'Image file has been uploaded.', data };
-                        addGalleryEditResponse(result, token);
-                    }
-                } catch (error: any) {
-                    throw new Error(error.message);
-                }
+                console.log("Image is not url")
             }
         }
 
@@ -132,15 +115,7 @@ const imgbox = async (
                         return data;
                     }
                     if (typeof source === 'string' && !isUrl(source)) {
-                        try {
-                            if (fs.statSync(source).isFile()) {
-                                const form = createFormData(token, content_type, thumbnail_size, comments_enabled);
-                                const data = await postImage(fs.readFileSync(source), form);
-                                return data;
-                            }
-                        } catch (error: any) {
-                            throw new Error(error.message);
-                        }
+                        console.log("Image is not url")
                     }
                 }));
             }
@@ -159,15 +134,7 @@ const imgbox = async (
                         return data;
                     }
                     if (typeof (image as any).source === 'string' && !isUrl((image as any).source)) {
-                        try {
-                            if (fs.statSync((image as any).source).isFile()) {
-                                const form = createFormData(token, content_type, thumbnail_size, comments_enabled);
-                                const data = await postImage(fs.readFileSync((image as any).source), form, (image as WithName).filename);
-                                return data;
-                            }
-                        } catch (error: any) {
-                            throw new Error(error.message);
-                        }
+                        console.log("Image is not url")
                     }
                 }));
             }

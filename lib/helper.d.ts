@@ -7,9 +7,9 @@ declare const setHeadersConfig: (configs: {
     key: string;
     value: string;
 }[]) => object;
-declare const getToken: (album_config: IAlbumConfig, auth_cookie?: string | undefined, default_token?: string | undefined) => Promise<IToken>;
+declare const getToken: (album_config: IAlbumConfig, auth_cookie?: string, default_token?: string) => Promise<IToken>;
 declare const createFormData: (token: IToken, contentType: ContentType, thumbnail_size: ThumbnailSize, comments_enabled: CommentEnabled) => FormData;
 declare const urlToBuffer: (url: string) => Promise<Buffer>;
-declare const postImage: (url: string | Buffer, form: FormData, filename?: string | undefined) => Promise<object>;
+declare const postImage: (url: string | Buffer, form: FormData, filename?: string) => Promise<object>;
 declare const addGalleryEditResponse: (result: IResponseObject, token: IToken) => void;
 export { getCsrfAndCookie, getAuthCsrf, setHeadersConfig, getToken, createFormData, urlToBuffer, postImage, addGalleryEditResponse };

@@ -1,21 +1,21 @@
 import { ThumbnailSize, ContentType, CommentEnabled, LoggerEnabled, Images, IResponseObject, ImageScope, OrderBy } from './interfaces';
 declare const imgbox: {
     (images: Images, options?: {
-        auth_cookie?: string | undefined;
-        album_title?: string | undefined;
-        content_type?: ContentType | undefined;
-        thumbnail_size?: ThumbnailSize | undefined;
-        comments_enabled?: CommentEnabled | undefined;
-        logger?: LoggerEnabled | undefined;
-    } | undefined): Promise<IResponseObject>;
+        auth_cookie?: string;
+        album_title?: string;
+        content_type?: ContentType;
+        thumbnail_size?: ThumbnailSize;
+        comments_enabled?: CommentEnabled;
+        logger?: LoggerEnabled;
+    }): Promise<IResponseObject>;
     deleteGallery(galleryEditUrl: string, options?: {
-        auth_cookie?: string | undefined;
-        logger?: LoggerEnabled | undefined;
-    } | undefined): Promise<IResponseObject>;
+        auth_cookie?: string;
+        logger?: LoggerEnabled;
+    }): Promise<IResponseObject>;
     updateComment(galleryEditUrl: string, options?: {
-        isEnabled?: boolean | undefined;
-        logger?: LoggerEnabled | undefined;
-    } | undefined): Promise<IResponseObject>;
+        isEnabled?: boolean;
+        logger?: LoggerEnabled;
+    }): Promise<IResponseObject>;
     getImages(options: {
         auth_cookie: string;
         page?: number;
